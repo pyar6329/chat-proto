@@ -1,6 +1,7 @@
 pub use prost;
 pub use prost_types;
 pub use tonic;
+pub use tonic_reflection;
 
 #[cfg(test)]
 mod tests {
@@ -32,6 +33,6 @@ pub mod chat {
     tonic::include_proto!("chat");
     // import belows
     // use chat_proto::chat::chat_client::*;
-    // use chat_proto::chat::chat_server::*;
+    // use chat_proto::chat::chat_server::{Chat, ChatServer};
     // use chat_proto::chat::{JoinChatRoomResponse, SendChatMessageRequest};
 }
