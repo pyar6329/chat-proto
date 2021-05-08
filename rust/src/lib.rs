@@ -31,6 +31,7 @@ mod tests {
 
 pub mod chat {
     tonic::include_proto!("chat");
+    pub const FILE_DESCRIPTOR_SET: &[u8] = tonic::include_file_descriptor_set!("chat_descriptor");
     // import belows
     // use chat_proto::chat::chat_client::*;
     // use chat_proto::chat::chat_server::{Chat, ChatServer};
