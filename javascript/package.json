@@ -1,0 +1,19 @@
+{
+  "name": "chat-client",
+  "version": "0.1.0",
+  "description": "chat client using gRPC web proto gen",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "jest --verbose ./tests"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "google-protobuf": "^3.17.0",
+    "grpc-web": "^1.2.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
