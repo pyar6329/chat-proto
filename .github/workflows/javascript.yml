@@ -7,9 +7,6 @@ jobs:
     defaults:
       run: 
         working-directory: javascript
-    env:
-      CACHE_VERSION: "0.0"
-      PROTOC_VERSION: "3.17.0"
     steps:
     - uses: actions/checkout@v2
       with:
@@ -25,6 +22,8 @@ jobs:
     - name: Cache npm
       id: cache-npm
       uses: actions/cache@v2
+      env:
+        CACHE_VERSION: "0.0"
       with:
         path: |
           ~/.npm
@@ -42,6 +41,27 @@ jobs:
     - name: Install Dependencies
       if: steps.cache-npm.outputs.cache-hit != 'true'
       run: npm install
+
+    - name: Install protoc
+      env:
+        PROTOC_VERSION: "3.17.0"
+      run: |
+        curl -sL -o protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/protoc-${PROTOC_VERSION}-linux-x86_64.zip
+        unzip protoc.zip
+        chmod +x bin/protoc
+        sudo mv bin/protoc /usr/local/bin/protoc
+        mv include/* ../proto
+        rm -rf protoc.zip readme.txt bin
+
+    - name: Install protoc grpc-web
+      env:
+        PROTOC_GRPC_WEB_VERSION: "1.2.1"
+      run: |
+        sudo curl -sL -o /usr/local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${PROTOC_GRPC_WEB_VERSION}/protoc-gen-grpc-web-${PROTOC_GRPC_WEB_VERSION}-linux-x86_64
+        chmod +x /usr/local/bin/protoc-gen-grpc-web
+
+    - name: Generate javascript files from proto
+      run: make gen-proto
 
     - name: Run test
       run: npm test
