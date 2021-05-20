@@ -28,9 +28,9 @@ jobs:
         path: |
           ~/.npm
           node_modules
-        key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}-${{ env.CACHE_VERSION }}
+        key: ${{ runner.os }}-npm-${{ hashFiles('javascript/package-lock.json') }}-${{ env.CACHE_VERSION }}
         restore-keys: |
-          ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}-
+          ${{ runner.os }}-npm-${{ hashFiles('javascript/package-lock.json') }}-
           ${{ runner.os }}-npm-
 
     - name: Setup Node
@@ -57,8 +57,9 @@ jobs:
       env:
         PROTOC_GRPC_WEB_VERSION: "1.2.1"
       run: |
-        sudo curl -sL -o /usr/local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${PROTOC_GRPC_WEB_VERSION}/protoc-gen-grpc-web-${PROTOC_GRPC_WEB_VERSION}-linux-x86_64
-        chmod +x /usr/local/bin/protoc-gen-grpc-web
+        curl -sL -o protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${PROTOC_GRPC_WEB_VERSION}/protoc-gen-grpc-web-${PROTOC_GRPC_WEB_VERSION}-linux-x86_64
+        chmod +x protoc-gen-grpc-web
+        sudo mv /usr/local/bin/protoc-gen-grpc-web
 
     - name: Generate javascript files from proto
       run: make gen-proto
