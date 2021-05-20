@@ -59,7 +59,7 @@ jobs:
       run: |
         curl -sL -o protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${PROTOC_GRPC_WEB_VERSION}/protoc-gen-grpc-web-${PROTOC_GRPC_WEB_VERSION}-linux-x86_64
         chmod +x protoc-gen-grpc-web
-        sudo mv /usr/local/bin/protoc-gen-grpc-web
+        sudo mv protoc-gen-grpc-web /usr/local/bin/protoc-gen-grpc-web
 
     - name: Generate javascript files from proto
       run: make gen-proto
