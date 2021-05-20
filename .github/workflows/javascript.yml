@@ -69,11 +69,11 @@ jobs:
     - name: Run test
       run: npm test
 
-    - name: Set GitHub Access Token for Other Repository
+    - name: Publish npm package to GitHub package
       env:
         NODE_AUTH_TOKEN: ${{ secrets.ACCESS_TOKEN_FOR_GITHUB }}
-      run: |
-        npm publish
+      run: npm publish
+        # npm version major
 
   # release-tag:
   #   needs: test

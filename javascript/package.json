@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "chat client using gRPC web proto gen",
   "main": "index.js",
-  "private": true,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
