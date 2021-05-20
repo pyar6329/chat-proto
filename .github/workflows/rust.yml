@@ -30,20 +30,15 @@ jobs:
           ~/.cargo/registry/cache
           ~/.cargo/git
           target
-        key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}-${{ env.CACHE_VERSION }}
+        key: ${{ runner.os }}-cargo-${{ hashFiles('rust/Cargo.lock') }}-${{ env.CACHE_VERSION }}
         restore-keys: |
-          ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}-
+          ${{ runner.os }}-cargo-${{ hashFiles('rust/Cargo.lock') }}-
           ${{ runner.os }}-cargo-
 
     - name: Setup Rust
       uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
-
-    - name: Run cargo build
-      uses: actions-rs/cargo@v1
-      with:
-        command: build
 
     - name: Run cargo check
       uses: actions-rs/cargo@v1
