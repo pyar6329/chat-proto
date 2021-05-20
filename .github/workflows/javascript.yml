@@ -23,11 +23,11 @@ jobs:
       id: cache-npm
       uses: actions/cache@v2
       env:
-        CACHE_VERSION: "0.0"
+        CACHE_VERSION: "0.1"
       with:
         path: |
           ~/.npm
-          node_modules
+          javascript/node_modules
         key: ${{ runner.os }}-npm-${{ hashFiles('javascript/package-lock.json') }}-${{ env.CACHE_VERSION }}
         restore-keys: |
           ${{ runner.os }}-npm-${{ hashFiles('javascript/package-lock.json') }}-

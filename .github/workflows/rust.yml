@@ -7,8 +7,6 @@ jobs:
     defaults:
       run: 
         working-directory: rust
-    env:
-      CACHE_VERSION: "0.0"
     steps:
     - uses: actions/checkout@v2
       with:
@@ -24,12 +22,14 @@ jobs:
     - name: Cache cargo
       id: cache-cargo
       uses: actions/cache@v2
+      env:
+        CACHE_VERSION: "0.0"
       with:
         path: |
           ~/.cargo/registry/index
           ~/.cargo/registry/cache
           ~/.cargo/git
-          target
+          rust/target
         key: ${{ runner.os }}-cargo-${{ hashFiles('rust/Cargo.lock') }}-${{ env.CACHE_VERSION }}
         restore-keys: |
           ${{ runner.os }}-cargo-${{ hashFiles('rust/Cargo.lock') }}-
