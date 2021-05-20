@@ -1,5 +1,5 @@
 {
-  "name": "chat-client",
+  "name": "@pyar6329/chat-proto",
   "version": "0.1.0",
   "description": "chat client using gRPC web proto gen",
   "main": "index.js",
